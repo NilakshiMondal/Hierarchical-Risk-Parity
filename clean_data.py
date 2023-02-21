@@ -8,7 +8,7 @@ from datetime import datetime
 # The cleaned dataset is a lot smaller so we won't have to worry about pushing
 # this big file up and down from Git because that analysis part will only use
 # 'clean_data.csv' -- the output of this script.
-data = pd.read_csv('original_data.csv')
+data = pd.read_csv('data/original_data.csv')
 
 # remove the '_returns' from all the column names bc it's awkward
 data = data.set_axis(
