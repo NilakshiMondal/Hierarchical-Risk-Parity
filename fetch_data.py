@@ -24,23 +24,25 @@ data = response.json()
 symbol = 'BTC'
 quotes = data['data'][symbol][0]['quotes']
 
-df = pd.DataFrame(columns=['time', 'open', 'low', 'high', 'close', 'volume', 'market_cap'])
+# df = pd.DataFrame(columns=['time', 'open', 'low', 'high', 'close', 'volume', 'market_cap'])
+df = pd.DataFrame(columns=[ 'time','close'])
+
 
 for i in range(0, len(quotes)):
     price_data = quotes[i]['quote']['USD']
-    for value in price_data.items():
-        df = df.append({
-            'time': price_data['timestamp'],
-            'open': price_data['open'],
-            'low': price_data['low'],
-            'high': price_data['high'],
-            'close': price_data['close'],
-            'volume': price_data['volume'],
-            'market_cap': price_data['market_cap'],
-        }, ignore_index=True)
+    df = df.append({
+        'time': price_data['timestamp'],
+        # 'open': price_data['open'],
+        # 'low': price_data['low'],
+        # 'high': price_data['high'],
+        'close': price_data['close']
+        # 'volume': price_data['volume'],
+        # 'market_cap': price_data['market_cap'],
+    }, ignore_index=True)
+
 
 df = df.set_index('time')
 # print(df)
-# df.to_csv('BTC_data')
+df.to_csv('data/BTC_data.csv')
 
 
